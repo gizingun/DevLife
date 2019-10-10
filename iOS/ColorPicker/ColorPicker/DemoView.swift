@@ -9,12 +9,32 @@
 import UIKit
 
 class DemoView: UIView {
+    private let colorSlider: ColorSlider
+    
     override init(frame: CGRect) {
+        colorSlider = ColorSlider(orientation: .vertical)
+        
         super.init(frame: frame)
-        backgroundColor = .red
+        backgroundColor = .gray
+        
+        addSubview(colorSlider)
+        setupConstraints()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+}
+
+private extension DemoView {
+    func setupConstraints() {
+        let colorSliderHeight: CGFloat = 178
+        colorSlider.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            colorSlider.centerXAnchor.constraint(equalTo: centerXAnchor),
+            colorSlider.centerYAnchor.constraint(equalTo: centerYAnchor),
+            colorSlider.widthAnchor.constraint(equalToConstant: 4),
+            colorSlider.heightAnchor.constraint(equalToConstant: colorSliderHeight),
+        ])
     }
 }
