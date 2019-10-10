@@ -12,6 +12,7 @@ class GradientColorView: UIView {
         self.orientation = orientation
         self.gradient = Gradient.colorSliderGradient()
 //        self.gradient = Gradient.colorSliderGradient(saturation: 1, whiteInset: 0.15, blackInset: 0.15)
+        
         super.init(frame: .zero)
         
         backgroundColor = .clear
@@ -25,10 +26,30 @@ class GradientColorView: UIView {
             gradientLayer.startPoint = CGPoint(x: 0, y: 0.5)
             gradientLayer.endPoint = CGPoint(x: 1, y: 0.5)
         }
+        
+        gradientLayer.masksToBounds = true
+        gradientLayer.cornerRadius = 2.0
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    // MAKR: Public
+    
+    func color(from oldColor: HSBColor, after touch: UITouch, insideSlider: Bool) -> HSBColor {
+        var color = oldColor
+        if insideSlider {
+            let progress = touch.progress(in: self, withOrientation: orientation)
+            color = calculateColor(for: progress)
+        } else {
+            guard let containingView = touch.view?.superview else { return color }
+            let horizontalPercent = touch.progress(withOrientation: .horizontal)
+            let verticalPercent = touch.progress(in: containingView, withOrientation: .vertical)
+//            print("horizontalPercent : \(horizontalPercent), verticalPercent: \(verticalPercent)")
+        }
+        
+        return color
     }
 }
 
@@ -51,6 +72,12 @@ extension GradientColorView {
             return UIColor(hsbColor: hsbColor).cgColor
         })
         gradientLayer.locations = gradient.locations as [NSNumber]
+    }
+}
+
+private extension GradientColorView {
+    func calculateColor(for sliderProgress: CGFloat) -> HSBColor {
+        return gradient.color(at: sliderProgress)
     }
 }
 
@@ -105,5 +132,29 @@ fileprivate extension UIColor {
         assert(blue >= 0 && blue <= 255, "Invalid blue component")
         
         self.init(red: CGFloat(red) / 255.0, green: CGFloat(green) / 255.0, blue: CGFloat(blue) / 255.0, alpha: 1.0)
+    }
+}
+
+fileprivate extension UITouch {
+    func progress(in view: UIView, withOrientation orientation: ColorSlider.Orientation) -> CGFloat {
+        let touchLocation = self.location(in: view)
+        var progress: CGFloat = 0
+        
+        switch orientation {
+        case .vertical:
+            progress = touchLocation.y / view.bounds.height
+        case .horizontal:
+            progress = touchLocation.x / view.bounds.width
+        }
+        
+        return (0.0..<1.0).clamp(progress)
+    }
+    
+    func progress(withOrientation orientation: ColorSlider.Orientation) -> CGFloat {
+        guard let view = self.view else { return 1 }
+        guard let superView = self.view?.superview else { return 1 }
+        let location = self.location(in: superView)
+        print("view: \(view.frame), superView: \(superView.frame), location: \(location)")
+        return 0
     }
 }

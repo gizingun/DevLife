@@ -12,7 +12,7 @@ class DemoView: UIView {
     private let colorSlider: ColorSlider
     
     override init(frame: CGRect) {
-        colorSlider = ColorSlider(orientation: .vertical)
+        colorSlider = ColorSlider(orientation: .vertical, side: .left)
         
         super.init(frame: frame)
         backgroundColor = .gray
@@ -28,12 +28,13 @@ class DemoView: UIView {
 
 private extension DemoView {
     func setupConstraints() {
-        let colorSliderHeight: CGFloat = 178
+        let colorSliderHeight: CGFloat = 178 + ColorSlider.gradientInset * 2
         colorSlider.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            colorSlider.centerXAnchor.constraint(equalTo: centerXAnchor),
+//            colorSlider.centerXAnchor.constraint(equalTo: centerXAnchor),
+            colorSlider.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -22),
             colorSlider.centerYAnchor.constraint(equalTo: centerYAnchor),
-            colorSlider.widthAnchor.constraint(equalToConstant: 4),
+            colorSlider.widthAnchor.constraint(equalToConstant: 4 + ColorSlider.gradientInset * 2),
             colorSlider.heightAnchor.constraint(equalToConstant: colorSliderHeight),
         ])
     }

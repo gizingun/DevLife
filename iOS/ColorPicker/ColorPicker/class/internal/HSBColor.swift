@@ -14,6 +14,10 @@ struct HSBColor: Equatable {
         return saturation == 0
     }
     
+    var uiColor: UIColor {
+        return UIColor(hsbColor: self)
+    }
+    
     init(hue: CGFloat, saturation: CGFloat, brightness: CGFloat) {
         self.hue = hue
         self.saturation = saturation
@@ -21,7 +25,18 @@ struct HSBColor: Equatable {
     }
     
     init(color: UIColor) {
-        color.getHue(&self.hue, saturation: &self.saturation, brightness: &self.brightness, alpha: nil)
+        if color == .white {
+            hue = HSBColor.white.hue
+            saturation = HSBColor.white.saturation
+            brightness = HSBColor.white.brightness
+        } else if color == .black {
+            hue = HSBColor.black.hue
+            saturation = HSBColor.black.saturation
+            brightness = HSBColor.black.brightness
+        } else {
+            color.getHue(&self.hue, saturation: &self.saturation, brightness: &self.brightness, alpha: nil)
+            self.brightness = 1.0
+        }
     }
     
     static func between(color: HSBColor, and otherColor: HSBColor, ratio: CGFloat) -> HSBColor {
@@ -29,6 +44,14 @@ struct HSBColor: Equatable {
         let saturation = min(color.saturation, otherColor.saturation) + (abs(color.saturation - otherColor.saturation) * ratio)
         let brightness = min(color.brightness, otherColor.brightness) + (abs(color.brightness - otherColor.brightness) * ratio)
         return HSBColor(hue: hue, saturation: saturation, brightness: brightness)
+    }
+    
+    static func mix(color: HSBColor, and otherColor: HSBColor, ratio: CGFloat) -> HSBColor {
+        let uiColor = color.uiColor
+        let otherUiColor = otherColor.uiColor
+        let mixedColor = uiColor.mixin(infusion: otherUiColor, alpha: ratio)
+        let result = HSBColor(color: mixedColor)
+        return result
     }
     
     static func ==(lhs: HSBColor, rhs: HSBColor) -> Bool {

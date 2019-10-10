@@ -12,6 +12,9 @@
 		F4AE8678234EB2EA004D1F4A /* HSBColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4AE8677234EB2EA004D1F4A /* HSBColor.swift */; };
 		F4AE867A234EB47E004D1F4A /* GradientColorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4AE8679234EB47E004D1F4A /* GradientColorView.swift */; };
 		F4AE867D234EB505004D1F4A /* Gradient.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4AE867C234EB505004D1F4A /* Gradient.swift */; };
+		F4AE867F234ED392004D1F4A /* ColorStatePreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4AE867E234ED392004D1F4A /* ColorStatePreviewView.swift */; };
+		F4AE8681234EF138004D1F4A /* ColorStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4AE8680234EF138004D1F4A /* ColorStateView.swift */; };
+		F4AE8683234EF528004D1F4A /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4AE8682234EF528004D1F4A /* Extensions.swift */; };
 		F4E164E0234DE6EB009860CA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E164DF234DE6EB009860CA /* AppDelegate.swift */; };
 		F4E164E2234DE6EB009860CA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E164E1234DE6EB009860CA /* SceneDelegate.swift */; };
 		F4E164E4234DE6EB009860CA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E164E3234DE6EB009860CA /* ViewController.swift */; };
@@ -45,6 +48,9 @@
 		F4AE8677234EB2EA004D1F4A /* HSBColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HSBColor.swift; sourceTree = "<group>"; };
 		F4AE8679234EB47E004D1F4A /* GradientColorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientColorView.swift; sourceTree = "<group>"; };
 		F4AE867C234EB505004D1F4A /* Gradient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gradient.swift; sourceTree = "<group>"; };
+		F4AE867E234ED392004D1F4A /* ColorStatePreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorStatePreviewView.swift; sourceTree = "<group>"; };
+		F4AE8680234EF138004D1F4A /* ColorStateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorStateView.swift; sourceTree = "<group>"; };
+		F4AE8682234EF528004D1F4A /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		F4E164DC234DE6EB009860CA /* ColorPicker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ColorPicker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F4E164DF234DE6EB009860CA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F4E164E1234DE6EB009860CA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -91,7 +97,9 @@
 			children = (
 				F4AE867B234EB4FB004D1F4A /* internal */,
 				F47CDF4D234DEC1D00548123 /* ColorSlider.swift */,
+				F4AE867E234ED392004D1F4A /* ColorStatePreviewView.swift */,
 				F4AE8679234EB47E004D1F4A /* GradientColorView.swift */,
+				F4AE8680234EF138004D1F4A /* ColorStateView.swift */,
 			);
 			path = class;
 			sourceTree = "<group>";
@@ -137,6 +145,7 @@
 				F4E164E8234DE6EC009860CA /* Assets.xcassets */,
 				F4E164EA234DE6EC009860CA /* LaunchScreen.storyboard */,
 				F4E164ED234DE6EC009860CA /* Info.plist */,
+				F4AE8682234EF528004D1F4A /* Extensions.swift */,
 			);
 			path = ColorPicker;
 			sourceTree = "<group>";
@@ -292,11 +301,14 @@
 			files = (
 				F4E164E4234DE6EB009860CA /* ViewController.swift in Sources */,
 				F4AE8678234EB2EA004D1F4A /* HSBColor.swift in Sources */,
+				F4AE8681234EF138004D1F4A /* ColorStateView.swift in Sources */,
+				F4AE867F234ED392004D1F4A /* ColorStatePreviewView.swift in Sources */,
 				F47CDF4E234DEC1D00548123 /* ColorSlider.swift in Sources */,
 				F4AE867A234EB47E004D1F4A /* GradientColorView.swift in Sources */,
 				F47CDF4B234DE9CB00548123 /* DemoView.swift in Sources */,
 				F4E164E0234DE6EB009860CA /* AppDelegate.swift in Sources */,
 				F4E164E2234DE6EB009860CA /* SceneDelegate.swift in Sources */,
+				F4AE8683234EF528004D1F4A /* Extensions.swift in Sources */,
 				F4AE867D234EB505004D1F4A /* Gradient.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
