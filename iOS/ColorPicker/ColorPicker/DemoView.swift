@@ -17,6 +17,7 @@ class DemoView: UIView {
         super.init(frame: frame)
         backgroundColor = .gray
         
+        colorSlider.addTarget(self, action: #selector(changedColor(slider:)), for: .valueChanged)
         addSubview(colorSlider)
         setupConstraints()
     }
@@ -27,8 +28,8 @@ class DemoView: UIView {
     
     // MARK: Event
     
-    @objc func changeColor(slider: ColorSlider) {
-        
+    @objc func changedColor(slider: ColorSlider) {
+        print("slider changed color: \(slider.color) - hue(\(slider.color.hue)), saturation(\(slider.color.saturation)), brightness(\(slider.color.brightness)), brightnessRatio(\(slider.color.brightnessRatio))")
     }
 }
 

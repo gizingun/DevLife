@@ -6,7 +6,9 @@ class ColorSlider: UIControl {
         case horizontal
         case vertical
     }
-    
+    var color: HSBColor {
+        return internalColor
+    }
     private var internalColor: HSBColor
     private var sliderContainerView: UIView = UIView()
     private let orientation: Orientation
