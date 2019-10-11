@@ -49,9 +49,6 @@ class ColorSlider: UIControl {
         default:
             break
         }
-        
-        let wow = self.contentHorizontalAlignment
-        print("wow")
     }
 }
 
@@ -61,7 +58,7 @@ extension ColorSlider {
     override func beginTracking(_ touch: UITouch, with event: UIEvent?) -> Bool {
         super.beginTracking(touch, with: event)
         // Reset brightness
-        internalColor.brightness = 1.0
+        internalColor.brightnessRatio = 1.0
         update(touch: touch, touchInside: true)
         
         let touchLocation = touch.location(in: sliderContainerView)
@@ -76,7 +73,7 @@ extension ColorSlider {
     
     override func continueTracking(_ touch: UITouch, with event: UIEvent?) -> Bool {
         super.continueTracking(touch, with: event)
-        
+
         if isTouchInside == false {
             preview.transition(to: .activeFixed)
         }
@@ -89,17 +86,20 @@ extension ColorSlider {
             let touchLocation = touch.location(in: sliderContainerView)
             centerPreview(at: touchLocation)
         }
-//
-//        if isTouchInside {
-//            update(touch: touch, touchInside: true)
-//            let touchLocation = touch.location(in: sliderContainerView)
-//            centerPreview(at: touchLocation)
-//        } else {
-//            update(touch: touch, touchInside: false)
-//            let touchLocation = touch.location(in: sliderContainerView)
-//            preview.transition(to: .activeFixed)
-////            print("touchLocation outside : \(touchLocation)")
-//        }
+        
+        /*
+         if isTouchInside {
+         update(touch: touch, touchInside: true)
+         let touchLocation = touch.location(in: sliderContainerView)
+         centerPreview(at: touchLocation)
+         } else {
+         update(touch: touch, touchInside: false)
+         let touchLocation = touch.location(in: sliderContainerView)
+         preview.transition(to: .activeFixed)
+         //            print("touchLocation outside : \(touchLocation)")
+         }
+         */
+
         
         sendActions(for: .valueChanged)
         return true
@@ -109,10 +109,12 @@ extension ColorSlider {
         super.endTracking(touch, with: event)
         
         guard let endTouch = touch else { return }
-        update(touch: endTouch, touchInside: isTouchInside)
+        if preview.lastState == .active {
+            update(touch: endTouch, touchInside: true)
+        } else if preview.lastState == .activeFixed {
+            update(touch: endTouch, touchInside: false)
+        }
         preview.transition(to: .inactive)
-        
-        print("endTracking")
     }
 }
 

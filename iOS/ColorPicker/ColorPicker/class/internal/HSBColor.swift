@@ -1,12 +1,13 @@
 import UIKit
 
 struct HSBColor: Equatable {
-    static let black = HSBColor(hue: 0, saturation: 1, brightness: 0)
+    static let black = HSBColor(hue: 0, saturation: 0, brightness: 0)
     static let white = HSBColor(hue: 1, saturation: 0, brightness: 1)
     
     var hue: CGFloat = 0
     var saturation: CGFloat = 1
     var brightness: CGFloat = 1
+    var brightnessRatio: CGFloat = 1
     
     // Computed value
     
@@ -63,6 +64,6 @@ struct HSBColor: Equatable {
 
 extension UIColor {
     convenience init(hsbColor: HSBColor) {
-        self.init(hue: hsbColor.hue, saturation: hsbColor.saturation, brightness: hsbColor.brightness, alpha: 1)
+        self.init(hue: hsbColor.hue, saturation: hsbColor.saturation, brightness: hsbColor.brightness * hsbColor.brightnessRatio, alpha: 1)
     }
 }

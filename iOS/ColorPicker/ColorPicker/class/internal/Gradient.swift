@@ -35,7 +35,9 @@ struct Gradient {
         
         var scaledRatio = (ratio - minLocation) / (maxLocation - minLocation)
         guard leftColor != .white else {    // leftColor is white
-            return HSBColor.mix(color: leftColor, and: rightColor, ratio: scaledRatio)
+            let mixedColor = HSBColor.mix(color: leftColor, and: rightColor, ratio: scaledRatio)
+            print("result: hue:(\(mixedColor.hue)), saturation:(\(mixedColor.saturation)), brightness:(\(mixedColor.brightness))")
+            return mixedColor
         }
         
         if leftColor.hue > rightColor.hue && !leftColor.isGrayscale {
@@ -44,6 +46,8 @@ struct Gradient {
         if rightColor == .black {
             scaledRatio = 1 - scaledRatio
         }
-        return HSBColor.between(color: leftColor, and: rightColor, ratio: scaledRatio)
+        let resultColor = HSBColor.between(color: leftColor, and: rightColor, ratio: scaledRatio)
+        print("result: hue:(\(resultColor.hue)), saturation:(\(resultColor.saturation)), brightness:(\(resultColor.brightness))")
+        return resultColor
     }
 }

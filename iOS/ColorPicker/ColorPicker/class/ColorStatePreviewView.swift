@@ -23,12 +23,13 @@ class ColorStatePreviewView: UIView {
         case bottom
     }
     
-    private static let animationDuration: TimeInterval = 0.15
     static let size: CGSize = CGSize(width: 22, height: 22)
+    private static let animationDuration: TimeInterval = 0.15
     private static let activeImageSize: CGSize = CGSize(width: 85, height: 72)
     private static let activeColorViewInset: CGFloat = 5
     private static let activeColorSize: CGSize = CGSize(width: 62, height: 62)
     
+    var hapticEnabled: Bool = false
     private(set) var lastState: State = .inactive
     private var side: Side
     private let colorView: UIView = UIView()
@@ -128,6 +129,19 @@ class ColorStatePreviewView: UIView {
                 self.activeImageView.isHidden = true
             }
         })
+        
+        if hapticEnabled, #available(iOS 10.0, *) {
+            switch (lastState, state) {
+            case (.active, .activeFixed):
+                let impactFeedback = UIImpactFeedbackGenerator(style: .medium)
+                impactFeedback.impactOccurred()
+            case (.activeFixed, .inactive):
+                let impactFeedback = UIImpactFeedbackGenerator(style: .light)
+                impactFeedback.impactOccurred()
+            default:
+                break
+            }
+        }
         
         lastState = state
     }

@@ -43,10 +43,14 @@ class GradientColorView: UIView {
             let progress = touch.progress(in: self, withOrientation: orientation)
             color = calculateColor(for: progress)
         } else {
-            guard let containingView = touch.view?.superview else { return color }
             let horizontalPercent = touch.progress(withOrientation: .horizontal)
-            let verticalPercent = touch.progress(in: containingView, withOrientation: .vertical)
-//            print("horizontalPercent : \(horizontalPercent), verticalPercent: \(verticalPercent)")
+            let verticalPercent = touch.progress(withOrientation: .vertical)
+            switch orientation {
+            case .vertical:
+                color.brightnessRatio = horizontalPercent
+            case .horizontal:
+                color.brightnessRatio = verticalPercent
+            }
         }
         
         return color
@@ -151,10 +155,29 @@ fileprivate extension UITouch {
     }
     
     func progress(withOrientation orientation: ColorSlider.Orientation) -> CGFloat {
+        let lengthMargin: CGFloat = 50
+        let controlInset: CGFloat = 70
+        let maxProgress: CGFloat = 1
+        
         guard let view = self.view else { return 1 }
-        guard let superView = self.view?.superview else { return 1 }
-        let location = self.location(in: superView)
-        print("view: \(view.frame), superView: \(superView.frame), location: \(location)")
-        return 0
+        let location = self.location(in: view)
+        switch orientation {
+        case .horizontal: // Caculate right to left movement
+            let baseLength = view.frame.origin.x - lengthMargin - controlInset
+            guard baseLength > lengthMargin else { return 1 }
+            var movement = min(0, location.x + controlInset)
+            movement = (0..<baseLength).clamp(abs(movement))
+            
+            let progress: CGFloat = (0..<maxProgress).clamp(movement/baseLength)
+            return maxProgress - progress
+        case .vertical: // Caculate bottom to up movement
+            let baseLength = view.frame.origin.y - lengthMargin - controlInset
+            guard baseLength > lengthMargin else { return 1 }
+            var movement = min(0, location.y + controlInset)
+            movement = (0..<baseLength).clamp(abs(movement))
+            
+            let progress: CGFloat = (0..<maxProgress).clamp(movement/baseLength)
+            return maxProgress - progress
+        }
     }
 }
