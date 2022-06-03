@@ -1,0 +1,32 @@
+PODS:
+  - MetalPetal/Core (1.24.1)
+  - MetalPetal/Swift (1.24.1):
+    - MetalPetal/Core
+  - RxCocoa (6.5.0):
+    - RxRelay (= 6.5.0)
+    - RxSwift (= 6.5.0)
+  - RxRelay (6.5.0):
+    - RxSwift (= 6.5.0)
+  - RxSwift (6.5.0)
+
+DEPENDENCIES:
+  - MetalPetal/Swift
+  - RxCocoa
+  - RxSwift
+
+SPEC REPOS:
+  trunk:
+    - MetalPetal
+    - RxCocoa
+    - RxRelay
+    - RxSwift
+
+SPEC CHECKSUMS:
+  MetalPetal: 5801c52cb1ce686743f2d1955456bfcaba112832
+  RxCocoa: 94f817b71c07517321eb4f9ad299112ca8af743b
+  RxRelay: 1de1523e604c72b6c68feadedd1af3b1b4d0ecbd
+  RxSwift: 5710a9e6b17f3c3d6e40d6e559b9fa1e813b2ef8
+
+PODFILE CHECKSUM: cea097ad32f08dc19f0c7243434633a161a6bc95
+
+COCOAPODS: 1.11.3

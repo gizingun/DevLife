@@ -6,5 +6,8 @@ target 'MetalPetalTest' do
   use_frameworks!
 
   # Pods for MetalPetalTest
+  pod 'MetalPetal/Swift'
+  pod 'RxSwift'
+  pod 'RxCocoa'
 
 end
