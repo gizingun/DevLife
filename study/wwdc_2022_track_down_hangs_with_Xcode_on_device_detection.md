@@ -50,8 +50,38 @@ Track down hangs with Xcode and on-device detection
 - hang detection & labeling
 - configure a hang dration threshold
 
-8:45
-
 ### Beta tooling
+- on-device hang detection (without Xcode connection) in developer settings
+- available for development-signed or TestFlight apps
+- on/off, threshold, target, hang noti log
+- these diagnostics are in the background at a low priority
+- less information. but, give us an understanding of the hang at a glance
+
+![On-device hang detection](/study/resources/on_device_hang_detection.png)
+
 
 ### Public release tooling
+##### Xcode Organizer [Hang reports]
+- The collected data is from customers which have consented to share app analytics
+- Contain information about the main thread stack
+- similar stack traces are collected -> grouped togerher [Signature]
+- the code responsible for the hang, the hang duration, device and OS version
+- each signature provides statistics (counts, a breakdown of those logs by OS Version and device)
+- Hang log is readable (because App Store with symbol infomation)
+- Can retrieve the same hang report data (through App Store Connect REST APIs)
+
+![Hang report](/study/resources/hang_report.png)
+
+##### Submitting symbols
+- Improve Xcode Organizer experience
+- Only essential information extracted
+- Securely stored and never shared
+
+
+### Wrap-up
+- Fix hangs early
+- Enable Thread Performance Checker
+- Enable on-device hang detection
+- Use hang report regularly
+- Enable regression notification
+- Submit symbols
