@@ -84,4 +84,5 @@ Track down hangs with Xcode and on-device detection
 - Enable on-device hang detection
 - Use hang report regularly
 - Enable regression notification
+  - Ref. [Diagnose Power and Performance regression in your app](https://developer.apple.com/videos/play/wwdc2021/10087)
 - Submit symbols
