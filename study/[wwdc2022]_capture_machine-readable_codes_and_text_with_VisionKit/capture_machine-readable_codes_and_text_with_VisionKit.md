@@ -38,6 +38,7 @@
 <img src="allCodes.png" width="700">
 
 - 지원 가능 언어
+  - 다만, 나중에 변할수도 있다 (왠지 밑밥..)
 
 <img src="allLang.png" width="700">
  
@@ -54,17 +55,22 @@
   <img src="Camera.png" width="700">
   
   #### Draw custom highlight
-  - delegate 사용을 통해 machine-redable code객체의 정보 (아이디, 좌표, 내용 등등) 전달받음
-    - UniqueID, Bounds(four corners)
-  - delegate 지정
-  <img src="delegate.png" width="700">
-  - didAdd
+
+- delegate 사용을 통해 machine-redable code객체의 정보 (아이디, 좌표, 내용 등등) 전달받음
+  - UniqueID, Bounds(four corners)
+
+- delegate 지정
+<img src="delegate.png" width="700">
+
+- didAdd
     - item이 새로 인식된 경우
-  <img src="didAdd.png" width="700">
-  - didUpdate 
+<img src="didAdd.png" width="700">
+
+- didUpdate 
     - item이 이동하거나 카메라가 이동하는 경우
-  <img src="didUpdate.png" width="700">
-  - didRemove
+<img src="didUpdate.png" width="700">
+ 
+ - didRemove
     - item이 제거된 경우 (화면에서 더이상 보이지 않는 경우)
-    <img src="didRemove.png" width="700">
+<img src="didRemove.png" width="700">
    
