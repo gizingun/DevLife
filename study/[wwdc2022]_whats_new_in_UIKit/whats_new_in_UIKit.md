@@ -53,3 +53,37 @@
   * iOS 16에서는 silder over mode에서 자동 제공 (코드 추가 없이)
   
 <img src="side_bar.png" width="800">
+
+# Control enhancements
+
+#### UICalendarView
+
+* UIDatePicker 인사인 스타일보다 더 기능을 추가하면서  UICalendarView 추가
+  * Single selection, Multi selection, Decoration etc.
+  * UIDatePicker와 다른점은 date를 다루는 데이터가 NSDate가 아니라 NSDateCompoennts
+
+<img src="UICalendarView.png" width="800">
+
+
+* configure code example
+
+<img src="UICalendarView_ex.png" width="800">
+
+* decoratin code example
+
+<img src="UICalendarView_ex2.png" width="800">
+
+#### UIPageControl
+
+* 이전보다 Customize 기능 강화 
+  * Custom indicator images, orientation and direction
+
+<img src="page_control.png" width="800">
+
+#### UIPasteControl
+
+* iOS 16에서 기본동작이 변경 (예전 발표 내용)
+
+<img src="paste_control.png" width="800">
+
+
