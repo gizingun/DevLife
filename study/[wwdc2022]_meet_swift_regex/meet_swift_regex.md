@@ -11,9 +11,8 @@
 <img src="split_method_1.png" width="700">
 <img src="split_method_2.png" width="700">
 
-<image
+### Swift Regex
 
-### Regex
 - swift의 Regex는 Perl, Python, Rucy, Java, NSRegularExpressions등 수많은 언어들과 호환
 - Regex는 runtime에도 만들수 있음 (String 데이터로 전달 받을수 있음)
   - 다만 runtime의 경우 generic의 output 타입은 'AnyRegexOutput'
@@ -25,4 +24,16 @@
 - 구분(2개 이상의 공백 or tab)후 normalize
 <img src="two_space_or_tab_normalize.png" width="700">
 
+- Regular expression 단점
+  - 문법이 간결하고 표현적이지만 읽기가 힘들다 (가독성 낮음)
+  - 새로운 기능이 추가될때마다 더욱? 일기가 어려워진다
 
+- Swift Regex
+  - 소스코드와 동일한 방식으로 구조화되고 정리될 수 있음
+  - 데이터의 복잡성 (복잡한 패턴의 텍스트)이 증가될수록 표준을 지키는 Parser가 필요
+    - 그게바로 Swift Regex (;;)
+  - Unicode 사용
+  - Predictable execution & Surfaces controls
+    - 리터럴 표현을 통해 형추론이 가능한 부분을 얘기하는듯? 
+
+- 
