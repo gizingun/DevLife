@@ -18,10 +18,15 @@
   - 다만 runtime의 경우 generic의 output 타입은 'AnyRegexOutput'
   - 런타임에 결과물의 유형과 타입을 알수가 업기 때문
 - Regex Builder 사용해서도 생성 가능
+
 <img src="regex_init.png" width="700">
+
 - 문자열을 2개 이상의 공백 혹은 탭으로 구분
+
 <img src="two_space_or_tab.png" width="700">
+
 - 구분(2개 이상의 공백 or tab)후 normalize
+
 <img src="two_space_or_tab_normalize.png" width="700">
 
 - Regular expression 단점
@@ -36,4 +41,27 @@
   - Predictable execution & Surfaces controls
     - 리터럴 표현을 통해 형추론이 가능한 부분을 얘기하는듯? 
 
-- 
+- Swift Regex 실전 (은행 거래장부 인식)
+  - import RegexBuidler 선언
+  - 불필요한 process
+
+<img src="swift_regex_ex_1_1.png" width="700">
+
+    - 매칭되는 전체 문자열을 저장한 후 뒤 패턴 적용해서 잘라내는 방식
+
+  - 최적화
+
+<img src="swift_regex_ex_1_2.png" width="700">
+
+    - NagativeLookhead 사용하면 최적화 가능
+    - 전체 내용을 백업하지 않고 미리 뒤의 패턴을 만나면 멈추는 keyword
+    
+  - 마지막
+
+<img src="swift_regex_ex_1_3.png" width="700">
+
+
+
+
+
+ 
