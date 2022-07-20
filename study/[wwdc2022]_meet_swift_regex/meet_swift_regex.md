@@ -61,6 +61,34 @@
 <img src="swift_regex_ex_1_3.png" width="700">
 
 
+- Swift Regex 실전 (Capture - 추출)
+  - Capture를 통해 Regex의 generic 타입이 결정
+  - 날짜의 경우 텍스트를 날짜타입으로 변환할 필요없이 바로 실제 타입 (날짜)으로 변환됨
+<img src="swift_regex_ex_2_1.png" width="700">
+
+  - 인식된 값중 Date와 Decimal 을 추출
+<img src="swift_regex_ex_2_2.png" width="700">
+
+  - 추출된 값이 모호한 경우
+    - 화폐단위가 다르거나 국가별로 transaction의 날짜가 상이한 경우 (미국 달러 : 월/일/년, 영국 파운드: 일/월/년)
+<img src="swift_regex_ex_2_3.png" width="700">
+
+  - SubString 제어 (유니코드 사용)
+<img src="swift_regex_ex_2_4.png" width="700">
+
+    - date, middle, currency처럼 "named capture" 가능
+    - /P{currencySymbol)+ : 통화기호가 나오지 않는 모든 문자와 매치
+    - /p{currencySymbol} : 통화기호가 하나 나오는 문자열
+
+  - ParseStrategy 사용
+    - 미국 / 영국 transaction의 경우처럼 월/일/연도가 다른 경우 스트링을 직접 잘라서 조건으로 나누지 말고 Strategy 사용 가능
+<img src="swift_regex_ex_3_1.png" width="700">
+
+    - Strategy 사용
+<img src="swift_regex_ex_3_2.png" width="700">
+
+    - Date 스트링 normalize
+
 
 
 
