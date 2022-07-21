@@ -125,7 +125,7 @@
 <img src="realtime_ex_tryCapture.png" width="700">
 
     - Kleene closure 이슈 (오토마타 이론)
-    - 실시간에서는 부적함
+    - 실시간에서는 부적함 : 뒤의 regex가 매칭에 실패사면 backtracking을 통해 반복작업을 수행 (속도 메모리 이슈)
 <img src="realtime_ex_Kleene.png" width="700">
 
     - Local 키워드로 극복
