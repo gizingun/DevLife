@@ -89,7 +89,49 @@
 
     - Date 스트링 normalize
 
+  - Unicode extended grapheme clusters
+<img src="multi_unicode.png" width="700">
+    
+    - 단일 이모지가 여러개의 unicode scalar value로 이루어져 있음
+    - String은 UnicodeScalrView 제공 -> 다른 시스템과의 호환 및 고급 사용 가능 (?)
+    - String일 일단 메모리에 올라가면, UTF8 코드로 인코딩되고 UTF8View로 확인 가능
+    
+  - 동일한 문자를 다른 Scalar 집합으로 표현
+    - 영어외의 언어에서 보임
+<img src="scalar_rep.png" width="700">
 
+  - 그러나 ScalarView, UTF8View 관점에서는 다름
+<img src="diff_other_types.png" width="700">
+
+  - 일반적으로는 Unicode가 정확
+<img src="unicode_normal.png" width="700">
+
+    - . : 모든문자와 일치 (unicode 확장 그래픽 클러스터와 일치)
+    
+<img src="unicode_normal_1.png" width="700">
+
+    - .machingSemantics를 unicodeScalar로 지정한 경우 첫번째 이모지는 멀티 유니코드기때문에 매칭되지 않음
+
+  - 실시간 처리 상황을 대입 (위의 상황과 약간 다른점) : scale성 확보를 위한 예제
+    - 데이트가 아닌 timestamp로 처리도 있음
+    - Timestamp와 detail 필드가 간혹 더 복잡한 경우가 있음
+<img src="realtime_ex_1.png" width="700">
+
+    - regex가 필드별로만 적용되도록 negative lookahead 적용
+<img src="realtime_ex_feild.png" width="700">
+
+    - TryCapture 사용
+    - 미리 만든 matched feild를 전달하여 closure에서 regex 사용
+<img src="realtime_ex_tryCapture.png" width="700">
+
+    - Kleene closure 이슈 (오토마타 이론)
+    - 실시간에서는 부적함
+<img src="realtime_ex_Kleene.png" width="700">
+
+    - Local 키워드로 극복
+    - match된 이후의 regex에서 실패하더라도 뒤로 돌아가지 않음 (Global backtracking 진행 X)
+    - 양날의 검 잘써야함!
+<img src="realtime_ex_local.png" width="700">
 
 
  
