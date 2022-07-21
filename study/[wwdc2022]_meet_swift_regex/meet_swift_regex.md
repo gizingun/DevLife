@@ -134,4 +134,8 @@
 <img src="realtime_ex_local.png" width="700">
 
 
+- 참고 코드
+<img src="bad_example.png" width="700">
+
+
  
