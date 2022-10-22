@@ -1,0 +1,84 @@
+sil_stage raw
+
+import Builtin
+import Swift
+import SwiftShims
+
+import Foundation
+
+struct Person {
+  @_hasStorage var n: String { get set }
+  init(n: String)
+}
+
+// main
+sil [ossa] @main : $@convention(c) (Int32, UnsafeMutablePointer<Optional<UnsafeMutablePointer<Int8>>>) -> Int32 {
+bb0(%0 : $Int32, %1 : $UnsafeMutablePointer<Optional<UnsafeMutablePointer<Int8>>>):
+  %2 = integer_literal $Builtin.Int32, 0          // user: %3
+  %3 = struct $Int32 (%2 : $Builtin.Int32)        // user: %4
+  return %3 : $Int32                              // id: %4
+} // end sil function 'main'
+
+// Person.n.getter
+sil hidden [transparent] [ossa] @$s4test6PersonV1nSSvg : $@convention(method) (@guaranteed Person) -> @owned String {
+// %0 "self"                                      // users: %2, %1
+bb0(%0 : @guaranteed $Person):
+  debug_value %0 : $Person, let, name "self", argno 1, implicit // id: %1
+  %2 = struct_extract %0 : $Person, #Person.n     // user: %3
+  %3 = copy_value %2 : $String                    // user: %4
+  return %3 : $String                             // id: %4
+} // end sil function '$s4test6PersonV1nSSvg'
+
+// Person.n.setter
+sil hidden [transparent] [ossa] @$s4test6PersonV1nSSvs : $@convention(method) (@owned String, @inout Person) -> () {
+// %0 "value"                                     // users: %11, %2
+// %1 "self"                                      // users: %6, %4
+bb0(%0 : @owned $String, %1 : $*Person):
+  %2 = begin_borrow [lexical] %0 : $String        // users: %10, %5, %3
+  debug_value %2 : $String, let, name "value", argno 1, implicit // id: %3
+  debug_value %1 : $*Person, var, name "self", argno 2, implicit, expr op_deref // id: %4
+  %5 = copy_value %2 : $String                    // user: %8
+  %6 = begin_access [modify] [unknown] %1 : $*Person // users: %9, %7
+  %7 = struct_element_addr %6 : $*Person, #Person.n // user: %8
+  assign %5 to %7 : $*String                      // id: %8
+  end_access %6 : $*Person                        // id: %9
+  end_borrow %2 : $String                         // id: %10
+  destroy_value %0 : $String                      // id: %11
+  %12 = tuple ()                                  // user: %13
+  return %12 : $()                                // id: %13
+} // end sil function '$s4test6PersonV1nSSvs'
+
+// Person.n.modify
+sil hidden [transparent] [ossa] @$s4test6PersonV1nSSvM : $@yield_once @convention(method) (@inout Person) -> @yields @inout String {
+// %0 "self"                                      // users: %2, %1
+bb0(%0 : $*Person):
+  debug_value %0 : $*Person, var, name "self", argno 1, implicit, expr op_deref // id: %1
+  %2 = begin_access [modify] [unknown] %0 : $*Person // users: %5, %8, %3
+  %3 = struct_element_addr %2 : $*Person, #Person.n // user: %4
+  yield %3 : $*String, resume bb1, unwind bb2     // id: %4
+
+bb1:                                              // Preds: bb0
+  end_access %2 : $*Person                        // id: %5
+  %6 = tuple ()                                   // user: %7
+  return %6 : $()                                 // id: %7
+
+bb2:                                              // Preds: bb0
+  end_access %2 : $*Person                        // id: %8
+  unwind                                          // id: %9
+} // end sil function '$s4test6PersonV1nSSvM'
+
+// Person.init(n:)
+sil hidden [ossa] @$s4test6PersonV1nACSS_tcfC : $@convention(method) (@owned String, @thin Person.Type) -> @owned Person {
+// %0 "$implicit_value"                           // user: %2
+// %1 "$metatype"
+bb0(%0 : @owned $String, %1 : $@thin Person.Type):
+  %2 = struct $Person (%0 : $String)              // user: %3
+  return %2 : $Person                             // id: %3
+} // end sil function '$s4test6PersonV1nACSS_tcfC'
+
+
+
+// Mappings from '#fileID' to '#filePath':
+//   'test/test.swift' => 'test.swift'
+
+
